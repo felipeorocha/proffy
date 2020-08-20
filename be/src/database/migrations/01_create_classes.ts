@@ -6,9 +6,10 @@ export async function up(knex: Knex) {
     table.string('subject').notNullable();
     table.decimal('cost').notNullable();
     table.integer('user_id')
-      .notNullable()
+      .unsigned()
       .references('id')
       .inTable('users')
+      .notNullable()
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });

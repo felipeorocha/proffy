@@ -4,13 +4,14 @@ export async function up(knex: Knex) {
   return knex.schema.createTable('connections', table => {
     table.increments('id').primary();
     table.integer('user_id')
-      .notNullable()
+      .unsigned()
       .references('id')
       .inTable('users')
+      .notNullable()
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     table.timestamp('created_at')
-      .defaultTo('now()')
+      .defaultTo(knex.raw('now()'))
       .notNullable();
   });
 }
