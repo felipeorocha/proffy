@@ -3,15 +3,12 @@ import db from './database/connection';
 
 const routes = Router();
 
-routes.post('/classes', async (req, res) => {
+routes.post('/users', async (req, res) => {
   const {
     name,
     avatar,
     phone,
-    bio,
-    subject,
-    cost,
-    schedule
+    bio
   } = req.body;
 
   await db('users').insert({
